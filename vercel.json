@@ -1,5 +1,8 @@
 {
-  "redirects": [
-    { "source": "/", "destination": "DevOPs-Deploy-Extract.html", "permanent": false }
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/DevOPs-Deploy-Extract.html"
+    }
   ]
 }
