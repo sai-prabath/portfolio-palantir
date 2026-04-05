@@ -1,5 +1,5 @@
 {
   "redirects": [
-    { "source": "/", "destination": "/sai.html", "permanent": false }
+    { "source": "/", "destination": "DevOPs-Deploy-Extract.html", "permanent": false }
   ]
 }
