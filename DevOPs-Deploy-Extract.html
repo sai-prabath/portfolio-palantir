@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Saiprabath Chowdary S — Portfolio</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAANXUlEQVR4nDWW+VeTd9rG8ge8nS4qAiEJgSQQAiEhgUAI+76vAVlkB0UBUQHFre47dbdWK1rcRVHZN0Eg7Ltr25lO37aj8/bM9G3n7TLTc6bn8x7SMz/c5znP+f7wue7rur/38whC3R0wqhzwdxdjcpegkdvh5mSLysnu93K2w0Nmj6dCiNbFAS+FA1q5EI3cHrXMDrWzPSrpSlzFK3B3tEErs8OgFGFUickO0TLVuJvn909QvzoWF+Fy/NxlpESEULp6NUXZWQhiNEKCPBwIVouJ0jpicBXisQR1tsXd2c5annJ7NEtghQitwgFPudAKXjpTOtqiEK1AJbFBrxBidBNjUjkSpBJxeH0a3z9tg9/ecP3cAVyFywg3eGKOCWddYQGludkIknQiYjQiIjzFJOnEBLuL0PynQ7m9FWYFyh2sIjxkQtykdiglK1GIbZA7rMBFtAIPqS1ecnv0LiICPaQkeDnSc6EeXo/B63EuHqjBxWElsSY9WfHRVJUUU746B0GCTkyiXkK8ToLZR0KcVoKvUoTexcFqudoKF+IuF6JyssVLIcTT2Q6FyAZX8VLXInRyB3Rye6v9SrENQWopZn8lN3cX86brHG8eHud8TS5ysZBIo56MuGjWF+ZTmr0KQbinhCiv3wVkGhxJ1YsJchfhp3SwilDLlqy2x01qi7t0JZFaKWEaRzQye6v9SrENQWopZn8lN3cX86brHG8eHud8TS5ysZBIo56MuGjWF+ZTmr0KQbinhCiv3wVkGhxJ1YsJchfhp3SwilDLlqy2x01qi7t0JZFaKWEaRzQye3Rye3Rye6v9SrENQWopZn8lN3cX86brHG8eHud8TS5ysZBIo56MuGjWF+ZTmr0KQbinhCiv"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -36,18 +37,26 @@ a{color:inherit}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 @keyframes wave{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(14deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(14deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}}
+@keyframes scrollDrop{0%{height:0;opacity:0}30%{opacity:1}100%{height:100%;opacity:0}}
 
 /* ── Navbar ─────────────────────────────────────────────── */
 .navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;transition:all .3s ease}
 .navbar.scrolled{background:rgba(10,10,15,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--color-border);padding:.75rem 2rem}
 .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-size:1.5rem;font-weight:800;color:var(--color-text);text-decoration:none;letter-spacing:-.02em}
-.nav-logo .accent{color:var(--color-accent-light)}
+.nav-logo{display:flex;align-items:center;text-decoration:none}
+.nav-logo img{width:32px;height:32px;border-radius:50%;object-fit:cover}
 .nav-links{display:flex;gap:2rem}
 .nav-links a{color:var(--color-text-secondary);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .2s ease;position:relative}
 .nav-links a::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--color-accent);transition:width .3s ease}
 .nav-links a:hover{color:var(--color-text)}
 .nav-links a:hover::after{width:100%}
+
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;z-index:110}
+.hamburger span{display:block;width:24px;height:2px;background:var(--color-text);transition:all .3s ease;border-radius:2px}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 
 /* ── Hero ───────────────────────────────────────────────── */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:flex-start;padding:6rem 2rem 2rem;overflow:hidden}
@@ -75,9 +84,12 @@ a{color:inherit}
 .social-link{display:flex;align-items:center;gap:8px;padding:10px 20px;border-radius:10px;background:var(--color-bg-card);border:1px solid var(--color-border);color:var(--color-text-secondary);text-decoration:none;font-size:.88rem;font-weight:500;transition:all .25s ease}
 .social-link:hover{border-color:var(--color-accent);color:var(--color-accent-light);background:var(--color-accent-glow);transform:translateY(-2px)}
 .social-link svg{flex-shrink:0}
+
+/* Scroll trail */
 .scroll-hint{display:flex;flex-direction:column;align-items:flex-start;gap:8px;animation:fadeIn 1s ease-out 1.3s both}
 .scroll-text{font-size:.72rem;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.15em;font-weight:500}
-.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--color-accent),transparent);animation:pulse 2s ease-in-out infinite}
+.scroll-trail{position:relative;width:1px;height:80px;background:rgba(99,102,241,.1)}
+.scroll-trail::before{content:"";position:absolute;top:0;left:0;width:1px;background:linear-gradient(to bottom,var(--color-accent),var(--color-accent-2));animation:scrollDrop 2.5s ease-in-out infinite}
 
 /* ── Section shared ─────────────────────────────────────── */
 .section{padding:6rem 2rem}
@@ -137,11 +149,25 @@ a{color:inherit}
 
 /* ── Certifications ─────────────────────────────────────── */
 .certs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
-.cert-card{display:flex;align-items:flex-start;gap:1rem;padding:1.5rem;background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:16px;transition:all .3s ease}
+.cert-card{position:relative;display:flex;align-items:flex-start;gap:1rem;padding:1.5rem;background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:16px;transition:all .3s ease}
 .cert-card:hover{background:var(--color-bg-card-hover);border-color:var(--color-border-hover);transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.25)}
 .cert-icon{font-size:1.75rem;flex-shrink:0;margin-top:2px}
+.cert-body{flex:1}
 .cert-title{font-size:1rem;font-weight:600;color:var(--color-text);line-height:1.4;margin-bottom:6px}
 .cert-desc{font-size:.88rem;color:var(--color-text-secondary);line-height:1.6}
+.cert-view-btn{position:absolute;top:1rem;right:1rem;padding:5px 14px;border-radius:8px;background:var(--color-accent-glow);border:1px solid rgba(99,102,241,.25);color:var(--color-accent-light);font-size:.75rem;font-weight:600;cursor:pointer;transition:all .2s ease;text-decoration:none}
+.cert-view-btn:hover{background:var(--color-accent);color:#fff;border-color:var(--color-accent)}
+
+/* ── Cert Popup ─────────────────────────────────────────── */
+.popup-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);align-items:center;justify-content:center}
+.popup-overlay.active{display:flex}
+.popup-box{background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:16px;width:90%;max-width:900px;height:80vh;display:flex;flex-direction:column;overflow:hidden;position:relative;animation:fadeInUp .3s ease-out}
+.popup-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid var(--color-border)}
+.popup-title{font-size:1rem;font-weight:600;color:var(--color-text)}
+.popup-close{background:none;border:1px solid var(--color-border);color:var(--color-text-secondary);width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:all .2s ease}
+.popup-close:hover{background:rgba(255,255,255,.08);color:var(--color-text)}
+.popup-body{flex:1}
+.popup-body iframe{width:100%;height:100%;border:none}
 
 /* ── Contact ────────────────────────────────────────────── */
 .contact-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
@@ -169,6 +195,12 @@ a{color:inherit}
 @media(max-width:768px){
   .skills-grid,.certs-grid{grid-template-columns:1fr}
   .section-title{font-size:2rem}
+  /* Hamburger mobile */
+  .hamburger{display:flex}
+  .nav-links{position:fixed;top:0;right:-100%;width:260px;height:100vh;background:var(--color-bg-secondary);flex-direction:column;padding:5rem 2rem 2rem;gap:1.5rem;transition:right .35s ease;box-shadow:-4px 0 30px rgba(0,0,0,.5)}
+  .nav-links.open{right:0}
+  .nav-links a{font-size:1.1rem}
+  .nav-links a::after{display:none}
 }
 @media(max-width:640px){
   .hero{padding:5rem 1.5rem 2rem}
@@ -182,17 +214,21 @@ a{color:inherit}
   .feature:last-child{border-bottom:none}
   .contact-links{flex-direction:column;align-items:center}
   .contact-card{width:100%}
-  .nav-links{gap:1rem}
-  .nav-links a{font-size:.8rem}
 }
 </style>
 </head>
 <body>
 
+<!-- ════════════ NAVBAR ════════════ -->
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
-    <a href="#" class="nav-logo"><span class="accent">S</span>PC</a>
-    <div class="nav-links">
+    <a href="#" class="nav-logo">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAANXUlEQVR4nDWW+VeTd9rG8ge8nS4qAiEJgSQQAiEhgUAI+76vAVlkB0UBUQHFre47dbdWK1rcRVHZN0Eg7Ltr25lO37aj8/bM9G3n7TLTc6bn8x7SMz/c5znP+f7wue7rur/38whC3R0wqhzwdxdjcpegkdvh5mSLysnu93K2w0Nmj6dCiNbFAS+FA1q5EI3cHrXMDrWzPSrpSlzFK3B3tEErs8OgFGFUickO0TLVuJvn909QvzoWF+Fy/NxlpESEULp6NUXZWQhiNEKCPBwIVouJ0jpicBXisQR1tsXd2c5annJ7NEtghQitwgFPudAKXjpTOtqiEK1AJbFBrxBidBNjUjkSpBJxeH0a3z9tg9/ecP3cAVyFywg3eGKOCWddYQGludkIknQiYjQiIjzFJOnEBLuL0PynQ7m9FWYFyh2sIjxkQtykdiglK1GIbZA7rMBFtAIPqS1ecnv0LiICPaQkeDnSc6EeXo/B63EuHqjBxWElsSY9WfHRVJUUU746B0GCTkyiXkK8ToLZR0KcVoKvUoTexcFqudoKF+IuF6JyssVLIcTT2Q6FyAZX8VLXInRyB3Rye6v9SrENQWopZn8lN3cX86brHG8eHud8TS5ysZBIo56MuGjWF+ZTmr0KQbinhCiv3wVkGhxJ1YsJchfhp3SwilDLlqy2x01qi7t0JZFaKWEaRzQye3Rye3Rye6v9SrENQWopZn8lN3cX86brHG8eHud8TS5ysZBIo56MuGjWF+ZTmr0KQbinhCiv" alt="SPC" />
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
@@ -203,6 +239,7 @@ a{color:inherit}
   </div>
 </nav>
 
+<!-- ════════════ HERO ════════════ -->
 <section class="hero" id="about">
   <div class="bg-orbs">
     <div class="orb orb-1"></div>
@@ -223,6 +260,10 @@ a{color:inherit}
     </div>
 
     <div class="social-row">
+      <a href="#resume-section" class="social-link" aria-label="Resume" onclick="openPopup('Resume','resume.md')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>Resume</span>
+      </a>
       <a href="mailto:saiprabath33@gmail.com" class="social-link" aria-label="Email">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13L2 4"/></svg>
         <span>Email</span>
@@ -235,11 +276,12 @@ a{color:inherit}
 
     <div class="scroll-hint">
       <span class="scroll-text">scroll to explore</span>
-      <div class="scroll-line"></div>
+      <div class="scroll-trail"></div>
     </div>
   </div>
 </section>
 
+<!-- ════════════ SKILLS ════════════ -->
 <section class="section" id="skills">
   <div class="section-container">
     <div class="section-header">
@@ -248,146 +290,87 @@ a{color:inherit}
       <p class="section-subtitle">My toolkit across the Palantir Foundry platform</p>
     </div>
     <div class="skills-grid">
-      <div class="skill-card" style="--card-accent:#6366f1">
-        <div class="skill-card-header"><span class="skill-card-icon">⚙️</span><h3 class="skill-card-title">Data Engineering</h3></div>
-        <div class="skill-tags">
-          <span class="skill-tag">Code Repositories</span><span class="skill-tag">Pipeline Builder</span><span class="skill-tag">Contour</span><span class="skill-tag">Data Connection</span><span class="skill-tag">Data Lineage</span><span class="skill-tag">Scheduling &amp; Orchestration</span><span class="skill-tag">Python Transforms</span><span class="skill-tag">SQL Transforms</span><span class="skill-tag">Java Transforms</span><span class="skill-tag">Health Checks &amp; Expectations</span>
-        </div>
-      </div>
-      <div class="skill-card" style="--card-accent:#06b6d4">
-        <div class="skill-card-header"><span class="skill-card-icon">🖥️</span><h3 class="skill-card-title">Application Development</h3></div>
-        <div class="skill-tags">
-          <span class="skill-tag">Workshop</span><span class="skill-tag">Slate</span><span class="skill-tag">Custom React Widgets (OSDK)</span><span class="skill-tag">Ontology Manager</span><span class="skill-tag">Object &amp; Link Types</span><span class="skill-tag">Actions</span><span class="skill-tag">Function-Backed Actions</span><span class="skill-tag">Automate</span><span class="skill-tag">Foundry Website Hosting</span>
-        </div>
-      </div>
-      <div class="skill-card" style="--card-accent:#8b5cf6">
-        <div class="skill-card-header"><span class="skill-card-icon">🤖</span><h3 class="skill-card-title">AI / AIP</h3></div>
-        <div class="skill-tags">
-          <span class="skill-tag">AIP Agent Studio</span><span class="skill-tag">AIP Logic</span><span class="skill-tag">AIP Pipelines</span><span class="skill-tag">Function-Backed Chat Agents</span><span class="skill-tag">AIP Logic Based Chat Agents</span><span class="skill-tag">Prompt Engineering</span><span class="skill-tag">RCA Generation</span>
-        </div>
-      </div>
-      <div class="skill-card" style="--card-accent:#10b981">
-        <div class="skill-card-header"><span class="skill-card-icon">📊</span><h3 class="skill-card-title">DevOps, Viz &amp; Languages</h3></div>
-        <div class="skill-tags">
-          <span class="skill-tag">Foundry Marketplace</span><span class="skill-tag">Packaging &amp; Versioning</span><span class="skill-tag">Vega Charts</span><span class="skill-tag">Vertex Graph</span><span class="skill-tag">Contour Analyses</span><span class="skill-tag">TypeScript / React</span><span class="skill-tag">Python / PySpark / SQL / Java</span><span class="skill-tag">Git &amp; CI/CD</span>
-        </div>
-      </div>
+      <div class="skill-card" style="--card-accent:#6366f1"><div class="skill-card-header"><span class="skill-card-icon">⚙️</span><h3 class="skill-card-title">Data Engineering</h3></div><div class="skill-tags"><span class="skill-tag">Code Repositories</span><span class="skill-tag">Pipeline Builder</span><span class="skill-tag">Contour</span><span class="skill-tag">Data Connection</span><span class="skill-tag">Data Lineage</span><span class="skill-tag">Scheduling &amp; Orchestration</span><span class="skill-tag">Python Transforms</span><span class="skill-tag">SQL Transforms</span><span class="skill-tag">Java Transforms</span><span class="skill-tag">Health Checks &amp; Expectations</span></div></div>
+      <div class="skill-card" style="--card-accent:#06b6d4"><div class="skill-card-header"><span class="skill-card-icon">🖥️</span><h3 class="skill-card-title">Application Development</h3></div><div class="skill-tags"><span class="skill-tag">Workshop</span><span class="skill-tag">Slate</span><span class="skill-tag">Custom React Widgets (OSDK)</span><span class="skill-tag">Ontology Manager</span><span class="skill-tag">Object &amp; Link Types</span><span class="skill-tag">Actions</span><span class="skill-tag">Function-Backed Actions</span><span class="skill-tag">Automate</span><span class="skill-tag">Foundry Website Hosting</span></div></div>
+      <div class="skill-card" style="--card-accent:#8b5cf6"><div class="skill-card-header"><span class="skill-card-icon">🤖</span><h3 class="skill-card-title">AI / AIP</h3></div><div class="skill-tags"><span class="skill-tag">AIP Agent Studio</span><span class="skill-tag">AIP Logic</span><span class="skill-tag">AIP Pipelines</span><span class="skill-tag">Function-Backed Chat Agents</span><span class="skill-tag">AIP Logic Based Chat Agents</span><span class="skill-tag">Prompt Engineering</span><span class="skill-tag">RCA Generation</span></div></div>
+      <div class="skill-card" style="--card-accent:#10b981"><div class="skill-card-header"><span class="skill-card-icon">📊</span><h3 class="skill-card-title">DevOps, Viz &amp; Languages</h3></div><div class="skill-tags"><span class="skill-tag">Foundry Marketplace</span><span class="skill-tag">Packaging &amp; Versioning</span><span class="skill-tag">Vega Charts</span><span class="skill-tag">Vertex Graph</span><span class="skill-tag">Contour Analyses</span><span class="skill-tag">TypeScript / React</span><span class="skill-tag">Python / PySpark / SQL / Java</span><span class="skill-tag">Git &amp; CI/CD</span></div></div>
     </div>
   </div>
 </section>
 
+<!-- ════════════ EXPERIENCE ════════════ -->
 <section class="section" id="experience">
   <div class="section-container narrow">
-    <div class="section-header">
-      <span class="section-tag">Journey</span>
-      <h2 class="section-title">Where I've worked</h2>
-    </div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="role-header">
-            <div>
-              <h3 class="role-title">Palantir Foundry Data Engineer &amp; Application Developer</h3>
-              <p class="role-company">Tata Consultancy Services (TCS)</p>
-            </div>
-            <span class="role-period">Present</span>
-          </div>
-          <ul class="responsibilities">
-            <li><strong>Designed and built data pipelines</strong> using Foundry Code Repositories, Pipeline Builder, and Data Connection to ingest, transform, and serve data from multiple upstream sources to power ontologies.</li>
-            <li><strong>Implemented data health checks and expectations</strong> across pipelines to validate schema integrity, null constraints, and business rules, preventing bad data from flowing to downstream consumers and reducing production roll-backs by 30%.</li>
-            <li><strong>Developed ontology-backed analytical applications</strong> using Workshop, Slate, and custom React widgets powered by the Ontology SDK, enabling stakeholders to interact with complex datasets through intuitive UIs.</li>
-            <li><strong>Managed the Ontology layer end-to-end</strong>, defining Object Types, Link Types, Actions, and Function-Backed Actions to model real-world business entities and enable write-back workflows.</li>
-            <li><strong>Built AIP-powered chat agents</strong> using AIP Agent Studio with function-backed logic to answer user queries against ontology data, enabling conversational BI and reducing data retrieval time by over 60%.</li>
-            <li><strong>Integrated AIP into data pipelines</strong> to automatically generate Root Cause Analyses (RCA) on KPI deviations, reducing time-to-insight from hours to under 5 minutes.</li>
-            <li><strong>Configured Automate workflows</strong> to orchestrate scheduled builds, trigger alerts on threshold breaches, and streamline repetitive operational tasks, eliminating 90% of manual monitoring effort.</li>
-            <li><strong>Managed DevOps and Marketplace workflows</strong> — packaging, versioning, and installing Foundry solutions across development, staging, and production environments, ensuring reliable cross-environment deployments.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <div class="section-header"><span class="section-tag">Journey</span><h2 class="section-title">Where I've worked</h2></div>
+    <div class="timeline"><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="role-header"><div><h3 class="role-title">Palantir Foundry Data Engineer &amp; Application Developer</h3><p class="role-company">Tata Consultancy Services (TCS)</p></div><span class="role-period">Present</span></div>
+    <ul class="responsibilities">
+      <li><strong>Designed and built data pipelines</strong> using Foundry Code Repositories, Pipeline Builder, and Data Connection to ingest, transform, and serve data from multiple upstream sources to power ontologies.</li>
+      <li><strong>Implemented data health checks and expectations</strong> across pipelines to validate schema integrity, null constraints, and business rules, preventing bad data from flowing to downstream consumers and reducing production roll-backs by 30%.</li>
+      <li><strong>Developed ontology-backed analytical applications</strong> using Workshop, Slate, and custom React widgets powered by the Ontology SDK, enabling stakeholders to interact with complex datasets through intuitive UIs.</li>
+      <li><strong>Managed the Ontology layer end-to-end</strong>, defining Object Types, Link Types, Actions, and Function-Backed Actions to model real-world business entities and enable write-back workflows.</li>
+      <li><strong>Built AIP-powered chat agents</strong> using AIP Agent Studio with function-backed logic to answer user queries against ontology data, enabling conversational BI and reducing data retrieval time by over 60%.</li>
+      <li><strong>Integrated AIP into data pipelines</strong> to automatically generate Root Cause Analyses (RCA) on KPI deviations, reducing time-to-insight from hours to under 5 minutes.</li>
+      <li><strong>Configured Automate workflows</strong> to orchestrate scheduled builds, trigger alerts on threshold breaches, and streamline repetitive operational tasks, eliminating 90% of manual monitoring effort.</li>
+      <li><strong>Managed DevOps and Marketplace workflows</strong> — packaging, versioning, and installing Foundry solutions across development, staging, and production environments, ensuring reliable cross-environment deployments.</li>
+    </ul></div></div></div>
   </div>
 </section>
 
+<!-- ════════════ PROJECTS ════════════ -->
 <section class="section" id="projects">
   <div class="section-container">
-    <div class="section-header">
-      <span class="section-tag">Work</span>
-      <h2 class="section-title">Things I've built</h2>
-      <p class="section-subtitle">Real-world projects I've shipped on Palantir Foundry</p>
-    </div>
-    <div class="project-card">
-      <div class="project-header">
-        <div class="project-meta">
-          <span class="project-icon">🏥</span>
-          <div>
-            <h3 class="project-title">US Healthcare Payer &amp; PBM Analytics Platform</h3>
-            <p class="project-desc">A comprehensive application tracking KPIs for top national payers and Pharmacy Benefit Managers (PBMs) in US healthcare.</p>
-          </div>
-        </div>
-        <div class="project-tags">
-          <span class="tech-tag">Palantir Foundry</span><span class="tech-tag">AIP</span><span class="tech-tag">Slate</span><span class="tech-tag">Vega Charts</span><span class="tech-tag">Vertex Graph</span><span class="tech-tag">Automate</span>
-        </div>
-      </div>
-      <div class="features-grid">
-        <div class="feature"><span class="feature-icon">📊</span><h4 class="feature-title">KPI Tracking Table</h4><p class="feature-desc">Real-time and historical metrics displayed in a Slate-powered table view, tracking payer performance across multiple dimensions.</p></div>
-        <div class="feature"><span class="feature-icon">📈</span><h4 class="feature-title">Historical Metrics</h4><p class="feature-desc">Interactive Vega Charts visualizing trends, comparisons, and anomalies over configurable time ranges for deep analytical insights.</p></div>
-        <div class="feature"><span class="feature-icon">🌳</span><h4 class="feature-title">Hierarchy Tree</h4><p class="feature-desc">Vertex Graph-powered visualization of Payer → PBM → Contract relationships, enabling interactive exploration of organizational structures.</p></div>
-        <div class="feature"><span class="feature-icon">🔔</span><h4 class="feature-title">Alerts &amp; Subscriptions</h4><p class="feature-desc">Users subscribe to specific payer-brand combinations and receive automated alerts when KPI thresholds are breached.</p></div>
-        <div class="feature"><span class="feature-icon">🤖</span><h4 class="feature-title">AIP-Powered RCA</h4><p class="feature-desc">When KPI deviations exceed thresholds, AIP automatically generates Root Cause Analyses surfaced as actionable alerts to end users.</p></div>
-        <div class="feature"><span class="feature-icon">💬</span><h4 class="feature-title">AI Chatbot</h4><p class="feature-desc">AIP Agent Studio-powered chatbot enabling users to query KPI data and receive contextual answers in natural language.</p></div>
-      </div>
-    </div>
+    <div class="section-header"><span class="section-tag">Work</span><h2 class="section-title">Things I've built</h2><p class="section-subtitle">Real-world projects I've shipped on Palantir Foundry</p></div>
+    <div class="project-card"><div class="project-header"><div class="project-meta"><span class="project-icon">🏥</span><div><h3 class="project-title">US Healthcare Payer &amp; PBM Analytics Platform</h3><p class="project-desc">A comprehensive application tracking KPIs for top national payers and Pharmacy Benefit Managers (PBMs) in US healthcare.</p></div></div><div class="project-tags"><span class="tech-tag">Palantir Foundry</span><span class="tech-tag">AIP</span><span class="tech-tag">Slate</span><span class="tech-tag">Vega Charts</span><span class="tech-tag">Vertex Graph</span><span class="tech-tag">Automate</span></div></div>
+    <div class="features-grid">
+      <div class="feature"><span class="feature-icon">📊</span><h4 class="feature-title">KPI Tracking Table</h4><p class="feature-desc">Real-time and historical metrics displayed in a Slate-powered table view, tracking payer performance across multiple dimensions.</p></div>
+      <div class="feature"><span class="feature-icon">📈</span><h4 class="feature-title">Historical Metrics</h4><p class="feature-desc">Interactive Vega Charts visualizing trends, comparisons, and anomalies over configurable time ranges for deep analytical insights.</p></div>
+      <div class="feature"><span class="feature-icon">🌳</span><h4 class="feature-title">Hierarchy Tree</h4><p class="feature-desc">Vertex Graph-powered visualization of Payer → PBM → Contract relationships, enabling interactive exploration of organizational structures.</p></div>
+      <div class="feature"><span class="feature-icon">🔔</span><h4 class="feature-title">Alerts &amp; Subscriptions</h4><p class="feature-desc">Users subscribe to specific payer-brand combinations and receive automated alerts when KPI thresholds are breached.</p></div>
+      <div class="feature"><span class="feature-icon">🤖</span><h4 class="feature-title">AIP-Powered RCA</h4><p class="feature-desc">When KPI deviations exceed thresholds, AIP automatically generates Root Cause Analyses surfaced as actionable alerts to end users.</p></div>
+      <div class="feature"><span class="feature-icon">💬</span><h4 class="feature-title">AI Chatbot</h4><p class="feature-desc">AIP Agent Studio-powered chatbot enabling users to query KPI data and receive contextual answers in natural language.</p></div>
+    </div></div>
   </div>
 </section>
 
+<!-- ════════════ CERTIFICATIONS ════════════ -->
 <section class="section" id="certs">
   <div class="section-container">
-    <div class="section-header">
-      <span class="section-tag">Credentials</span>
-      <h2 class="section-title">Certifications &amp; Achievements</h2>
-    </div>
+    <div class="section-header"><span class="section-tag">Credentials</span><h2 class="section-title">Certifications &amp; Achievements</h2></div>
     <div class="certs-grid">
       <div class="cert-card">
         <span class="cert-icon">🏆</span>
-        <div><h3 class="cert-title">Palantir Certified Foundry Data Engineer — Professional</h3><p class="cert-desc">Demonstrated advanced proficiency in building production-grade data pipelines, ontology modeling, data lineage, and platform administration on Palantir Foundry.</p></div>
+        <div class="cert-body"><h3 class="cert-title">Palantir Certified Foundry Data Engineer — Professional</h3><p class="cert-desc">Demonstrated advanced proficiency in building production-grade data pipelines, ontology modeling, data lineage, and platform administration on Palantir Foundry.</p></div>
+        <button class="cert-view-btn" onclick="openPopup('DE Professional Certificate','https://verify.skilljar.com/c/9e5khp7sz49k')">View ↗</button>
       </div>
       <div class="cert-card">
         <span class="cert-icon">🎓</span>
-        <div><h3 class="cert-title">Palantir Certified Foundry Data Engineer — Associate</h3><p class="cert-desc">Validated foundational expertise in Foundry data engineering concepts, transforms, and pipeline orchestration.</p></div>
+        <div class="cert-body"><h3 class="cert-title">Palantir Certified Foundry Data Engineer — Associate</h3><p class="cert-desc">Validated foundational expertise in Foundry data engineering concepts, transforms, and pipeline orchestration.</p></div>
+        <button class="cert-view-btn" onclick="openPopup('DE Associate Certificate','https://verify.skilljar.com/c/gwdcnxv4ebv2')">View ↗</button>
       </div>
       <div class="cert-card">
         <span class="cert-icon">🎓</span>
-        <div><h3 class="cert-title">Palantir Certified Foundry Application Developer — Associate</h3><p class="cert-desc">Certified in building ontology-backed applications using Workshop, Slate, OSDK, Actions, and Automate workflows.</p></div>
+        <div class="cert-body"><h3 class="cert-title">Palantir Certified Foundry Application Developer — Associate</h3><p class="cert-desc">Certified in building ontology-backed applications using Workshop, Slate, OSDK, Actions, and Automate workflows.</p></div>
       </div>
       <div class="cert-card">
         <span class="cert-icon">💡</span>
-        <div><h3 class="cert-title">AIP Innovation</h3><p class="cert-desc">Pioneered the integration of AIP-driven RCA generation into production pipelines, reducing manual root-cause analysis effort by over 95% and establishing the pattern as a reusable template adopted across multiple teams.</p></div>
+        <div class="cert-body"><h3 class="cert-title">AIP Innovation</h3><p class="cert-desc">Pioneered the integration of AIP-driven RCA generation into production pipelines, reducing manual root-cause analysis effort by over 95% and establishing the pattern as a reusable template adopted across multiple teams.</p></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ════════════ CONTACT ════════════ -->
 <section class="section" id="contact" style="padding-bottom:4rem">
   <div class="section-container contact-w">
-    <div class="section-header" style="margin-bottom:3rem">
-      <span class="section-tag">Say hi</span>
-      <h2 class="section-title">Let's connect</h2>
-      <p class="section-subtitle">Got a question or just want to chat about Foundry? I'd love to hear from you.</p>
-    </div>
+    <div class="section-header" style="margin-bottom:3rem"><span class="section-tag">Say hi</span><h2 class="section-title">Let's connect</h2><p class="section-subtitle">Got a question or just want to chat about Foundry? I'd love to hear from you.</p></div>
     <div class="contact-links">
-      <a href="mailto:saiprabath33@gmail.com" class="contact-card">
-        <span class="contact-icon">✉️</span>
-        <div><span class="contact-label">Email</span><span class="contact-value">saiprabath33@gmail.com</span></div>
-      </a>
-      <a href="https://www.linkedin.com/in/saiprabathchowdary/" target="_blank" rel="noreferrer" class="contact-card">
-        <span class="contact-icon">🔗</span>
-        <div><span class="contact-label">LinkedIn</span><span class="contact-value">linkedin.com/in/saiprabathchowdary</span></div>
-      </a>
+      <a href="mailto:saiprabath33@gmail.com" class="contact-card"><span class="contact-icon">✉️</span><div><span class="contact-label">Email</span><span class="contact-value">saiprabath33@gmail.com</span></div></a>
+      <a href="https://www.linkedin.com/in/saiprabathchowdary/" target="_blank" rel="noreferrer" class="contact-card"><span class="contact-icon">🔗</span><div><span class="contact-label">LinkedIn</span><span class="contact-value">@saiprabathchowdary</span></div></a>
     </div>
   </div>
 </section>
 
+<!-- ════════════ FOOTER ════════════ -->
 <footer class="footer">
   <div class="footer-inner">
     <p class="footer-text">Built with <span class="ft-accent">Palantir Foundry OSDK</span> + <span class="ft-accent">React</span></p>
@@ -395,15 +378,63 @@ a{color:inherit}
   </div>
 </footer>
 
+<!-- ════════════ POPUP MODAL ════════════ -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-box">
+    <div class="popup-header">
+      <span class="popup-title" id="popupTitle"></span>
+      <button class="popup-close" id="popupClose" aria-label="Close">✕</button>
+    </div>
+    <div class="popup-body">
+      <iframe id="popupIframe" src="" title="Certificate"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ JS ════════════ -->
 <script>
-// Navbar scroll effect
+// Navbar scroll
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 50);
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+
+// Copyright
+document.getElementById('copyright').textContent = '© ' + new Date().getFullYear() + ' Saiprabath Chowdary S';
+
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+// Close menu on link click
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
 });
 
-// Copyright year
-document.getElementById('copyright').textContent = '© ' + new Date().getFullYear() + ' Saiprabath Chowdary S';
+// Popup modal
+const overlay = document.getElementById('popupOverlay');
+const popupTitle = document.getElementById('popupTitle');
+const popupIframe = document.getElementById('popupIframe');
+const popupClose = document.getElementById('popupClose');
+
+function openPopup(title, url) {
+  popupTitle.textContent = title;
+  popupIframe.src = url;
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closePopup() {
+  overlay.classList.remove('active');
+  popupIframe.src = '';
+  document.body.style.overflow = '';
+}
+popupClose.addEventListener('click', closePopup);
+overlay.addEventListener('click', (e) => { if (e.target === overlay) closePopup(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePopup(); });
 </script>
 </body>
 </html>
