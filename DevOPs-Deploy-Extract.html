@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Saiprabath Chowdary S — Portfolio</title>
 <link rel="icon" type="image/png" href="/favicon.png"/>
+<link rel="apple-touch-icon" href="/logo.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -149,13 +150,13 @@ a{color:inherit}
 
 /* ── Certifications ─────────────────────────────────────── */
 .certs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
-.cert-card{position:relative;display:flex;align-items:flex-start;gap:1rem;padding:1.5rem;background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:16px;transition:all .3s ease}
+.cert-card{position:relative;display:flex;align-items:flex-start;gap:1rem;padding:1.5rem;padding-top:2.75rem;background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:16px;transition:all .3s ease}
 .cert-card:hover{background:var(--color-bg-card-hover);border-color:var(--color-border-hover);transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.25)}
 .cert-icon{font-size:1.75rem;flex-shrink:0;margin-top:2px}
 .cert-body{flex:1}
 .cert-title{font-size:1rem;font-weight:600;color:var(--color-text);line-height:1.4;margin-bottom:6px}
 .cert-desc{font-size:.88rem;color:var(--color-text-secondary);line-height:1.6}
-.cert-view-btn{position:absolute;top:1rem;right:1rem;padding:5px 14px;border-radius:8px;background:var(--color-accent-glow);border:1px solid rgba(99,102,241,.25);color:var(--color-accent-light);font-size:.75rem;font-weight:600;cursor:pointer;transition:all .2s ease;text-decoration:none}
+.cert-view-btn{position:absolute;top:.75rem;right:.75rem;padding:5px 14px;border-radius:8px;background:var(--color-accent-glow);border:1px solid rgba(99,102,241,.25);color:var(--color-accent-light);font-size:.75rem;font-weight:600;cursor:pointer;transition:all .2s ease;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
 .cert-view-btn:hover{background:var(--color-accent);color:#fff;border-color:var(--color-accent)}
 
 /* ── Cert Popup ─────────────────────────────────────────── */
@@ -260,7 +261,7 @@ a{color:inherit}
     </div>
 
     <div class="social-row">
-      <a href="#resume-section" class="social-link" aria-label="Resume" onclick="openPopup('Resume','resume.md')">
+      <a href="javascript:void(0)" class="social-link" aria-label="Resume" onclick="openPopup('Resume','/Sai_palantir DE-AD.pdf')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         <span>Resume</span>
       </a>
@@ -340,12 +341,12 @@ a{color:inherit}
       <div class="cert-card">
         <span class="cert-icon">🏆</span>
         <div class="cert-body"><h3 class="cert-title">Palantir Certified Foundry Data Engineer — Professional</h3><p class="cert-desc">Demonstrated advanced proficiency in building production-grade data pipelines, ontology modeling, data lineage, and platform administration on Palantir Foundry.</p></div>
-        <button class="cert-view-btn" onclick="openPopup('DE Professional Certificate','https://verify.skilljar.com/c/9e5khp7sz49k')">View ↗</button>
+        <a class="cert-view-btn" href="https://verify.skilljar.com/c/9e5khp7sz49k" target="_blank" rel="noreferrer">View ↗</a>
       </div>
       <div class="cert-card">
         <span class="cert-icon">🎓</span>
         <div class="cert-body"><h3 class="cert-title">Palantir Certified Foundry Data Engineer — Associate</h3><p class="cert-desc">Validated foundational expertise in Foundry data engineering concepts, transforms, and pipeline orchestration.</p></div>
-        <button class="cert-view-btn" onclick="openPopup('DE Associate Certificate','https://verify.skilljar.com/c/gwdcnxv4ebv2')">View ↗</button>
+        <a class="cert-view-btn" href="https://verify.skilljar.com/c/gwdcnxv4ebv2" target="_blank" rel="noreferrer">View ↗</a>
       </div>
       <div class="cert-card">
         <span class="cert-icon">🎓</span>
@@ -365,7 +366,7 @@ a{color:inherit}
     <div class="section-header" style="margin-bottom:3rem"><span class="section-tag">Say hi</span><h2 class="section-title">Let's connect</h2><p class="section-subtitle">Got a question or just want to chat about Foundry? I'd love to hear from you.</p></div>
     <div class="contact-links">
       <a href="mailto:saiprabath33@gmail.com" class="contact-card"><span class="contact-icon">✉️</span><div><span class="contact-label">Email</span><span class="contact-value">saiprabath33@gmail.com</span></div></a>
-      <a href="https://www.linkedin.com/in/saiprabathchowdary/" target="_blank" rel="noreferrer" class="contact-card"><span class="contact-icon">🔗</span><div><span class="contact-label">LinkedIn</span><span class="contact-value">@saiprabathchowdary</span></div></a>
+      <a href="https://www.linkedin.com/in/saiprabathchowdary/" target="_blank" rel="noreferrer" class="contact-card"><span class="contact-icon">🔗</span><div><span class="contact-label">LinkedIn</span><span class="contact-value">linkedin.com/in/saiprabathchowdary</span></div></a>
     </div>
   </div>
 </section>
